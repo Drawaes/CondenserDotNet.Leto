@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Configurations>Debug-Unix;Debug-Windows;Release-Windows;Release-Unix</Configurations>
+    <WinBuild Condition="'$(Configuration)' == 'Debug-Windows' or $(Configuration) == 'Release-Windows'">true</WinBuild>
+    <WinBuild Condition="'$(Configuration)' == 'Debug-Unix' or $(Configuration) == 'Release-Unix'">false</WinBuild>
+    <RuntimeIdentifier Condition="'$(WinBuild)' == 'true'">win-x64</RuntimeIdentifier>
+    <RuntimeIdentifier Condition="'$(WinBuild)' == 'false'">linux-x64</RuntimeIdentifier>
+  </PropertyGroup>
+   
+  
+  <ItemGroup Condition="'$(WinBuild)' == 'true'">
+    <Compile Remove="EphemeralMemoryPool.Linux.cs" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(WinBuild)' == 'false'">
+    <Compile Remove="EphemeralMemoryPool.Windows.cs" />
+  </ItemGroup>
+    
+  <ItemGroup>
+    <PackageReference Include="System.Memory" Version="4.5.1" />
+  </ItemGroup>
+
+</Project>
