@@ -3,15 +3,15 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <RuntimeIdentifiers>win,unix</RuntimeIdentifiers>
+    <RuntimeIdentifiers>win-x64,linux-x64</RuntimeIdentifiers>
     <ExtrasBuildEachRuntimeIdentifier>true</ExtrasBuildEachRuntimeIdentifier>
   </PropertyGroup>
    
   
-  <ItemGroup Condition="'$(WIN)' == 'true'">
+  <ItemGroup Condition="'$(RuntimeIdentifier)' == 'win-x64'">
     <Compile Remove="EphemeralMemoryPool.Linux.cs" />
   </ItemGroup>
-  <ItemGroup Condition="'$(UNIX)' == 'true'">
+  <ItemGroup Condition="'$(RuntimeIdentifier)' == 'linux-x64'">
     <Compile Remove="EphemeralMemoryPool.Windows.cs" />
   </ItemGroup>
     
