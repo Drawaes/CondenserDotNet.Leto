@@ -20,7 +20,7 @@ namespace CondenserDotNet.Leto.EphemeralBuffers
         private bool _allowWorkingSetIncrease;
 
         public override int MaxBufferSize => _bufferSize;
-                
+
         public unsafe EphemeralMemoryPool(int bufferSize, int numberOfBuffers, bool allowWorkingsetIncrease = false)
         {
             _allowWorkingSetIncrease = allowWorkingsetIncrease;
@@ -29,13 +29,12 @@ namespace CondenserDotNet.Leto.EphemeralBuffers
 
             // Calculate total to allocate, which is space needed for buffers rounded up to the nearest page
             _totalAllocated = _numberOfBuffers * bufferSize;
-            _totalAllocated = _totalAllocated / _pageSize + (_totalAllocated % _pageSize == 0 ? 0 : 1);
-            _totalAllocated *= _pageSize;
+            _totalAllocated = (_totalAllocated + _pageSize) & (~_pageSize);
 
             _memoryPointer = GetMemoryPtr();
 
-            var ptr = (byte*) _memoryPointer;
-            for(var i = 0; i < numberOfBuffers;i++)
+            var ptr = (byte*)_memoryPointer;
+            for (var i = 0; i < numberOfBuffers; i++)
             {
                 _buffers.Enqueue(new EphemeralOwnedMemory(this, ptr, bufferSize));
                 ptr += bufferSize;
@@ -45,7 +44,7 @@ namespace CondenserDotNet.Leto.EphemeralBuffers
         public override IMemoryOwner<byte> Rent(int minBufferSize = -1)
         {
             if (minBufferSize > _bufferSize) ExceptionHelper.RequestedBufferTooLarge();
-            if(!_buffers.TryDequeue(out var owner))
+            if (!_buffers.TryDequeue(out var owner))
             {
                 ExceptionHelper.OutOfAvailableBuffers();
                 return owner;
@@ -54,7 +53,7 @@ namespace CondenserDotNet.Leto.EphemeralBuffers
         }
 
         private void Return(EphemeralOwnedMemory ownedMemory) => _buffers.Enqueue(ownedMemory);
-        
+
         private unsafe class EphemeralOwnedMemory : MemoryManager<byte>
         {
             private EphemeralMemoryPool _memoryPool;

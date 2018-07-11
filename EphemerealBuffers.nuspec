@@ -1,0 +1,13 @@
+<package xlmns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>CondenserDotNet.Leto.EphemeralBuffers</id>
+        <version>1.0.0</version>
+        <description>CondenserDotNet.Leto.EphemeralBuffers</description>
+        <authors></authors>
+        <dependencies>
+            <group targetFramework=".NETStandard2.0">
+                <dependency id="System.Memory" version="4.5.1" exclude="Build,Analysers">
+            </group>
+        </dependencies>
+    </metadata>
+</package>
