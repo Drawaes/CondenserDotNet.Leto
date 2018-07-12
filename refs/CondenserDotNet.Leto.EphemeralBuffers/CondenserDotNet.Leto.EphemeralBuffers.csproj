@@ -1,0 +1,22 @@
+﻿<Project Sdk="MSBuild.Sdk.Extras">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <NETStandardMaximumVersion>2.1</NETStandardMaximumVersion>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+    <Deterministic>true</Deterministic>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <Compile Include="..\..\CondenserDotNet.Leto.EphemeralBuffers\**\*.cs" Exclude="..\..\CondenserDotNet.Leto.EphemeralBuffers\obj\**" />
+    <Compile Remove="..\..\CondenserDotNet.Leto.EphemeralBuffers\**\*.Linux.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Memory" Version="4.5.1" />
+  </ItemGroup>
+
+</Project>
