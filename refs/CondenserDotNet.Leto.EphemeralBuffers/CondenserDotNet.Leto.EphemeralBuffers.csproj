@@ -19,4 +19,10 @@
     <PackageReference Include="System.Memory" Version="4.5.1" />
   </ItemGroup>
 
+  <Target Name="_GetReferenceAssemblies" DependsOnTargets="Build" Returns="@(ReferenceAssembliesOutput)">
+    <ItemGroup>
+      <ReferenceAssembliesOutput Include="@(IntermediateRefAssembly->'%(FullPath)')" TargetFramework="$(TargetFramework)" />
+    </ItemGroup>
+  </Target>
+
 </Project>

@@ -1,0 +1,19 @@
+<Project>  
+  
+  <PropertyGroup>
+    <Copyright>Copyright (c) Tim Seaward</Copyright>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <Authors>Tim Seaward</Authors>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/Drawaes/CondenserDotNet.Leto/master/LICENSE</PackageLicenseUrl>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>    
+    <SignAssembly>true</SignAssembly>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <IsTestProject>$(MSBuildProjectName.Contains('Test'))</IsTestProject>
+    <DebugType>embedded</DebugType>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <LangVersion>latest</LangVersion>
+    <VersionPrefix>0.0.1</VersionPrefix>
+    <VersionSuffix>beta</VersionSuffix>
+  </PropertyGroup>
+</Project>
