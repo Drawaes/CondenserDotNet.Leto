@@ -11,8 +11,8 @@
 
 
   <ItemGroup>
-    <Compile Include="..\..\CondenserDotNet.Leto.EphemeralBuffers\**\*.cs" Exclude="..\..\CondenserDotNet.Leto.EphemeralBuffers\obj\**" />
-    <Compile Remove="..\..\CondenserDotNet.Leto.EphemeralBuffers\**\*.Linux.cs" />
+    <Compile Include="..\..\src\CondenserDotNet.Leto.EphemeralBuffers\**\*.cs" Exclude="..\..\src\CondenserDotNet.Leto.EphemeralBuffers\obj\**" />
+    <Compile Remove="..\..\src\CondenserDotNet.Leto.EphemeralBuffers\**\*.Linux.cs" />
   </ItemGroup>
 
   <ItemGroup>
