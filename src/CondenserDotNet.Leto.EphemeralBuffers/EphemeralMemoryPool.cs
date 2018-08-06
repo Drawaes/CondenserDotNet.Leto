@@ -75,6 +75,9 @@ namespace CondenserDotNet.Leto.EphemeralBuffers
             protected override void Dispose(bool disposing)
             {
                 Debug.Assert(disposing, "Memory was finalised potential leak!");
+                // Zero memory
+                GetSpan().Fill(0);
+                // Return to Pool
                 _memoryPool.Return(this);
             }
         }
