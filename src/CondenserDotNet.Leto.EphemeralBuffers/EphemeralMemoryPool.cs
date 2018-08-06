@@ -9,6 +9,10 @@ using System.Threading;
 
 namespace CondenserDotNet.Leto.EphemeralBuffers
 {
+    /// <summary>
+    /// Memory pool that uses "locked" memory that tells the OS not to page the memory to disk
+    /// This could still be saved to disk say if for instance you are in a VM and the state is saved
+    /// </summary>
     public sealed partial class EphemeralMemoryPool : MemoryPool<byte>
     {
         private readonly int _bufferSize;
@@ -19,8 +23,17 @@ namespace CondenserDotNet.Leto.EphemeralBuffers
         private static readonly int _pageSize = GetPageSize();
         private bool _allowWorkingSetIncrease;
 
+        /// <summary>
+        /// This max size is actually == the only size for buffers as they are all equally sized
+        /// </summary>
         public override int MaxBufferSize => _bufferSize;
 
+        /// <summary>
+        /// Constructs a new ephemeral memory pool, will throw if the OS does not allow the requested size to be allocated
+        /// </summary>
+        /// <param name="bufferSize"></param>
+        /// <param name="numberOfBuffers"></param>
+        /// <param name="allowWorkingsetIncrease"></param>
         public unsafe EphemeralMemoryPool(int bufferSize, int numberOfBuffers, bool allowWorkingsetIncrease = false)
         {
             _allowWorkingSetIncrease = allowWorkingsetIncrease;
@@ -41,6 +54,11 @@ namespace CondenserDotNet.Leto.EphemeralBuffers
             }
         }
 
+        /// <summary>
+        /// Rents a memory buffer will throw OOM exception if there are no available buffers in the pool
+        /// </summary>
+        /// <param name="minBufferSize"></param>
+        /// <returns></returns>
         public override IMemoryOwner<byte> Rent(int minBufferSize = -1)
         {
             if (minBufferSize > _bufferSize) ExceptionHelper.RequestedBufferTooLarge();
