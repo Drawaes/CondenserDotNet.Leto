@@ -19,6 +19,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		version.props = version.props
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{70321337-1B84-4B4A-8193-E78CD2BAEA2C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CondenserDotNet.Leto.EphemeralBuffersFacts", "test\CondenserDotNet.Leto.EphemeralBuffersFacts\CondenserDotNet.Leto.EphemeralBuffersFacts.csproj", "{06B79086-5AFD-4CD9-AB95-A3C41571FDD5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +57,18 @@ Global
 		{16C2260F-560A-478B-9540-E5DDD019AA94}.Release|x64.Build.0 = Release|Any CPU
 		{16C2260F-560A-478B-9540-E5DDD019AA94}.Release|x86.ActiveCfg = Release|Any CPU
 		{16C2260F-560A-478B-9540-E5DDD019AA94}.Release|x86.Build.0 = Release|Any CPU
+		{06B79086-5AFD-4CD9-AB95-A3C41571FDD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06B79086-5AFD-4CD9-AB95-A3C41571FDD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06B79086-5AFD-4CD9-AB95-A3C41571FDD5}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{06B79086-5AFD-4CD9-AB95-A3C41571FDD5}.Debug|x64.Build.0 = Debug|Any CPU
+		{06B79086-5AFD-4CD9-AB95-A3C41571FDD5}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{06B79086-5AFD-4CD9-AB95-A3C41571FDD5}.Debug|x86.Build.0 = Debug|Any CPU
+		{06B79086-5AFD-4CD9-AB95-A3C41571FDD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06B79086-5AFD-4CD9-AB95-A3C41571FDD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06B79086-5AFD-4CD9-AB95-A3C41571FDD5}.Release|x64.ActiveCfg = Release|Any CPU
+		{06B79086-5AFD-4CD9-AB95-A3C41571FDD5}.Release|x64.Build.0 = Release|Any CPU
+		{06B79086-5AFD-4CD9-AB95-A3C41571FDD5}.Release|x86.ActiveCfg = Release|Any CPU
+		{06B79086-5AFD-4CD9-AB95-A3C41571FDD5}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,6 +76,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{81DD485F-4BD6-42D7-9EDF-D6281A97DCD1} = {1618633A-DE30-4927-BDA0-A79802BE7489}
 		{16C2260F-560A-478B-9540-E5DDD019AA94} = {F085F7F7-1615-491A-A54E-1DF23339DD78}
+		{06B79086-5AFD-4CD9-AB95-A3C41571FDD5} = {70321337-1B84-4B4A-8193-E78CD2BAEA2C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {991A6B1B-CAAB-44DF-AD78-C16DCBBDF926}
