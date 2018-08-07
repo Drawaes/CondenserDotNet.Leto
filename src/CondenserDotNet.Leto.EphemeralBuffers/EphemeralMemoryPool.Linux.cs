@@ -31,6 +31,10 @@ namespace CondenserDotNet.Leto.EphemeralBuffers
             {
                 ExceptionHelper.UnableToAllocateMemory();
             }
+            if(MAdvise(result, _totalAllocated, Advice.MADV_DONTDUMP) < 0)
+            {
+                ExceptionHelper.UnableToAllocateMemory();
+            }
             return result;
         }
 
