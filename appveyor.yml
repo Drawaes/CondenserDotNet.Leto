@@ -1,0 +1,40 @@
+os: Visual Studio 2017
+build: off
+
+environment:
+  sonarkey:
+    secure: dqF6V11A7InHKcyOX6WDGE3oA54yZQm0r9VLio85ndCn2B8d9zVI2mJ3lQdDzO3o
+  COVERALLS_REPO_TOKEN:
+    secure: H9ft1UQw4Y1DjrGHZCucXQe+qxDtBCsGxbGrRN2nYWy7Mw0aw5NnxrDBLZU3gwK3   
+    
+before_test:
+  - ECHO %APPVEYOR_REPO_COMMIT_MESSAGE%
+  - dotnet --info
+  - VersionNumber.bat
+  - dotnet restore
+  
+after_test:
+  # Build and pack source
+  - ps: iex ((Get-ChildItem ($env:USERPROFILE + '\.nuget\packages\OpenCover'))[0].FullName + '\tools\OpenCover.Console.exe' + ' -register:user -target:".\script\runtests.bat" -searchdirs:"..\test\Condenser.Tests.Integration\bin\Debug\netcoreapp1.1;..\test\CondenserTests\bin\debug\netcoreapp1.1" -oldstyle -output:coverage.xml -skipautoprops -hideskipped:All -returntargetcode -filter:"+[Condenser*]* -[*Test*]*"')
+  - ps: iex ((Get-ChildItem ($env:USERPROFILE + '\.nuget\packages\coveralls.io'))[0].FullName + '\tools\coveralls.net.exe' + ' --opencover coverage.xml')
+  - "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
+  - pip install codecov
+  - codecov -f "coverage.xml"
+  - dotnet build -c Release
+  - dotnet pack -c Release
+  
+artifacts:
+  - path: '**/*.nupkg'
+    name: packages
+  - path: 'coverage.xml'
+    name: coverage
+    type: zip
+
+deploy:  
+- provider: NuGet
+  server: https://www.myget.org/F/condenserdotnetleto/api/v2/package
+  api_key:
+    secure: 5mBb0A2rlwk1Iq6FEo94XSORm9etc3xPn0oLZ8dIJ6Hmm1G7quqf+Bz6fm+ft+FK
+  skip_symbols: true
+  on:
+    branch: master

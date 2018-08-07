@@ -1,5 +1,5 @@
-<Project>  
-  
+<Project>
+  <Import Project="version.props" />
   <PropertyGroup>
     <Copyright>Copyright (c) Tim Seaward</Copyright>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
